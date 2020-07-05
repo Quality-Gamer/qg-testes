@@ -39,11 +39,10 @@ def endTestEndpoint(email,password,match_id,user_id,test_id,win):
 
     correctList = redisKeysKey(keyCorrect)
     score = getScore(correctList)
-    # response = saveUserTest(email,password,match_id,user_id,test_id,win,score)
-    # saveUserTest(email,password,match_id,user_id,test_id,win,score)
+    response = saveUserTest(email,password,match_id,user_id,test_id,win,score)
 
 
-    return None
+    return response
 
 def saveUserTest(email,password,match_id,user_id,test_id,win,score):
     data = POSTRequest('https://qg-usuario.herokuapp.com/api/tests/save',{'email':email,'password':password,'match_id':match_id,'win':win,'score':score,'test_id':test_id})

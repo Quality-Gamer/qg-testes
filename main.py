@@ -51,8 +51,8 @@ def end():
     password = str(request.args.get('password'))
     match_id = str(request.args.get('match_id'))
     user_id = int(request.args.get('user_id'))
-    test_id = str(request.args.get('test_id'))
-    win = str(request.args.get('win'))
+    test_id = int(request.args.get('test_id'))
+    win = int(request.args.get('win'))
 
     return jsonify(endTestEndpoint(email,password,match_id,user_id,test_id,win))
 
