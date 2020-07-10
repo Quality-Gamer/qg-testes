@@ -1,6 +1,7 @@
 import requests
 import redis
 import json
+import os
 
 def GETRequest(url):
     r = requests.get(url = url) 
@@ -16,7 +17,7 @@ def POSTRequest(url,params):
     return data
 
 def redisConn():
-    return redis.Redis(host='localhost', port=6379, db=0)
+    return redis.Redis(host=os.getenv('REDIS_HOST'), port=os.getenv('REDIS_PORT'), db=0)
 
 def redisGetKey(key):
     r = redisConn()
