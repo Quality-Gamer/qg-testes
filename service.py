@@ -17,7 +17,7 @@ def POSTRequest(url,params):
     return data
 
 def redisConn():
-    return redis.Redis(host=os.getenv('REDIS_HOST'), port=os.getenv('REDIS_PORT'), db=0)
+    return redis.Redis.from_url(os.getenv('REDISCLOUD_URL'))
 
 def redisGetKey(key):
     r = redisConn()
