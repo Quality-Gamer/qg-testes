@@ -1,7 +1,7 @@
 from flask import Flask,jsonify,request
 from flask_cors import CORS
 import os
-from endpoints import testsEndpoint,indexEndpoint,testsDoneEndpoint,questionsEndpoint,saveAnswerEndpoint,endTestEndpoint
+from endpoints import testsEndpoint,indexEndpoint,testsDoneEndpoint,questionsEndpoint,saveAnswerEndpoint,endTestEndpoint,createTestEndpoint
 
 app = Flask(__name__)
 cors = CORS(app)
