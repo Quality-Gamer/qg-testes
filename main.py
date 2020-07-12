@@ -47,6 +47,9 @@ def end():
     test_id = int(request.args.get('test_id'))
     win = int(request.args.get('win'))
 
+    if(not test_id):
+        test_id = 0
+
     return jsonify(endTestEndpoint(match_id,user_id,test_id,win))
 
 if __name__ == "__main__":
