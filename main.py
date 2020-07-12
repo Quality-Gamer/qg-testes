@@ -40,7 +40,7 @@ def save():
 
     return jsonify(saveAnswerEndpoint(match_id,order,user_id,option))
 
-@app.route("/api/end")
+@app.route("/api/send")
 def end():
     match_id = str(request.args.get('match_id'))
     user_id = int(request.args.get('user_id'))
