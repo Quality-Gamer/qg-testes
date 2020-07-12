@@ -33,19 +33,19 @@ def saveAnswerEndpoint(match_id,order,user_id,option):
 
     return {'status':'OK', 'response': None, 'message': 'Sucesso'}
 
-def endTestEndpoint(match_id,user_id,test_id,win):
+def endTestEndpoint(match_id,user_id,win):
     keyPath = MICROSERVICE + ":" + TEST + ":" + str(user_id) + ":" + match_id + "*"
     keyCorrect = keyPath + ":" + CORRECT
 
     correctList = redisKeysKey(keyCorrect)
     score = getScore(correctList)
-    response = saveUserTest(match_id,user_id,test_id,win,score)
+    response = saveUserTest(match_id,user_id,win,score)
 
 
     return response
 
-def saveUserTest(match_id,user_id,test_id,win,score):
-    data = POSTRequest('https://qg-usuario.herokuapp.com/api/tests/save',{'user_id':user_id,'match_id':match_id,'win':win,'score':score,'test_id':test_id})
+def saveUserTest(match_id,user_id,win,score):
+    data = POSTRequest('https://qg-usuario.herokuapp.com/api/tests/save',{'user_id':user_id,'match_id':match_id,'win':win,'score':score})
     return data
 
 def getScore(corrects):
