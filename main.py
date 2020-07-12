@@ -44,9 +44,10 @@ def save():
 def end():
     match_id = str(request.args.get('match_id'))
     user_id = int(request.args.get('user_id'))
+    test_id = int(request.args.get('test_id'))
     win = int(request.args.get('win'))
 
-    return jsonify(endTestEndpoint(match_id,user_id,win))
+    return jsonify(endTestEndpoint(match_id,user_id,test_id,win))
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=port)
