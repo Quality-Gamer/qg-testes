@@ -40,15 +40,21 @@ def save():
 
     return jsonify(saveAnswerEndpoint(match_id,order,user_id,option))
 
-@app.route("/api/send")
+@app.route("/api/end")
 def end():
     match_id = str(request.args.get('match_id'))
     user_id = int(request.args.get('user_id'))
-    test_id = int(request.args.get('test_id'))
+    test_id = None
     win = int(request.args.get('win'))
 
-    if(not test_id):
-        test_id = 0
+    return jsonify(endTestEndpoint(match_id,user_id,test_id,win))
+
+@app.route("/api/create")
+def create():
+    match_id = None
+    user_id = int(request.args.get('user_id'))
+    test_id = int(request.args.get('test_id'))
+    win = None
 
     return jsonify(endTestEndpoint(match_id,user_id,test_id,win))
 
