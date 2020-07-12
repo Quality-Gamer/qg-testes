@@ -11,21 +11,21 @@ port = os.getenv('PORT') if os.getenv('PORT') else "8008"
 def main():
     return jsonify(indexEndpoint())
 
-@app.route("/tests",methods=['POST'])
+@app.route("/api/tests",methods=['POST'])
 def tests():
     email = str(request.form.get('email'))
     password = str(request.form.get('password'))
 
     return jsonify(testsEndpoint(email,password))
 
-@app.route("/done",methods=['POST'])
+@app.route("/api/done",methods=['POST'])
 def done():
     email = str(request.form.get('email'))
     password = str(request.form.get('password'))
 
     return jsonify(testsDoneEndpoint(email,password))
 
-@app.route("/questions",methods=['POST'])
+@app.route("/api/questions",methods=['POST'])
 def questions():
     email = str(request.form.get('email'))
     password = str(request.form.get('password'))
@@ -34,7 +34,7 @@ def questions():
 
     return jsonify(questionsEndpoint(email,password,match_id,order))
 
-@app.route("/save",methods=['POST'])
+@app.route("/api/save",methods=['POST'])
 def save():
     email = str(request.form.get('email'))
     password = str(request.form.get('password'))
@@ -45,7 +45,7 @@ def save():
 
     return jsonify(saveAnswerEndpoint(email,password,match_id,order,user_id,option))
 
-@app.route("/end",methods=['POST'])
+@app.route("/api/end",methods=['POST'])
 def end():
     email = str(request.form.get('email'))
     password = str(request.form.get('password'))
