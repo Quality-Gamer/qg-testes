@@ -11,48 +11,48 @@ port = os.getenv('PORT') if os.getenv('PORT') else "8008"
 def main():
     return jsonify(indexEndpoint())
 
-@app.route("/tests")
+@app.route("/tests",methods=['POST'])
 def tests():
-    email = str(request.args.get('email'))
-    password = str(request.args.get('password'))
+    email = str(request.form('email'))
+    password = str(request.form('password'))
 
     return jsonify(testsEndpoint(email,password))
 
-@app.route("/done")
+@app.route("/done",methods=['POST'])
 def done():
-    email = str(request.args.get('email'))
-    password = str(request.args.get('password'))
+    email = str(request.form('email'))
+    password = str(request.form('password'))
 
     return jsonify(testsDoneEndpoint(email,password))
 
-@app.route("/questions")
+@app.route("/questions",methods=['POST'])
 def questions():
-    email = str(request.args.get('email'))
-    password = str(request.args.get('password'))
-    match_id = str(request.args.get('match_id'))
-    order = str(request.args.get('order'))
+    email = str(request.form('email'))
+    password = str(request.form('password'))
+    match_id = str(request.form('match_id'))
+    order = str(request.form('order'))
 
     return jsonify(questionsEndpoint(email,password,match_id,order))
 
-@app.route("/save")
+@app.route("/save",methods=['POST'])
 def save():
-    email = str(request.args.get('email'))
-    password = str(request.args.get('password'))
-    match_id = str(request.args.get('match_id'))
-    order = str(request.args.get('order'))
-    user_id = int(request.args.get('user_id'))
-    option = str(request.args.get('option'))
+    email = str(request.form('email'))
+    password = str(request.form('password'))
+    match_id = str(request.form('match_id'))
+    order = str(request.form('order'))
+    user_id = int(request.form('user_id'))
+    option = str(request.form('option'))
 
     return jsonify(saveAnswerEndpoint(email,password,match_id,order,user_id,option))
 
-@app.route("/end")
+@app.route("/end",methods=['POST'])
 def end():
-    email = str(request.args.get('email'))
-    password = str(request.args.get('password'))
-    match_id = str(request.args.get('match_id'))
-    user_id = int(request.args.get('user_id'))
-    test_id = int(request.args.get('test_id'))
-    win = int(request.args.get('win'))
+    email = str(request.form('email'))
+    password = str(request.form('password'))
+    match_id = str(request.form('match_id'))
+    user_id = int(request.form('user_id'))
+    test_id = int(request.form('test_id'))
+    win = int(request.form('win'))
 
     return jsonify(endTestEndpoint(email,password,match_id,user_id,test_id,win))
 
