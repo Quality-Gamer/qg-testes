@@ -56,7 +56,7 @@ def create():
     test_id = int(request.args.get('test_id'))
     win = None
 
-    return jsonify(endTestEndpoint(match_id,user_id,test_id,win))
+    return jsonify(createTestEndpoint(match_id,user_id,test_id,win))
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=port)
