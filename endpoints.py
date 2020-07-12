@@ -4,24 +4,24 @@ from keys import *
 def indexEndpoint():
     return "Tests API - API from QualityGamer"
 
-def testsEndpoint(email,password):
-    data = POSTRequest('https://qg-usuario.herokuapp.com/api/tests/load',{'email':email,'password':password})
+def testsEndpoint(user_id):
+    data = POSTRequest('https://qg-usuario.herokuapp.com/api/tests/load',{'user_id':user_id})
     return data
 
-def testsDoneEndpoint(email,password):
-    data = POSTRequest('https://qg-usuario.herokuapp.com/api/tests/done',{'email':email,'password':password})
+def testsDoneEndpoint(user_id):
+    data = POSTRequest('https://qg-usuario.herokuapp.com/api/tests/done',{'user_id':user_id})
     return data
 
-def questionsEndpoint(email,password,match_id,order):
-    data = POSTRequest('https://qg-usuario.herokuapp.com/api/tests/questions',{'email':email,'password':password,'match_id':match_id})
+def questionsEndpoint(user_id,match_id,order):
+    data = POSTRequest('https://qg-usuario.herokuapp.com/api/tests/questions',{'user_id':user_id,'match_id':match_id})
     
     questions = data["response"]["questions"]
     question = selectQuestion(questions,order)
 
     return question
 
-def saveAnswerEndpoint(email,password,match_id,order,user_id,option):
-    data = POSTRequest('https://qg-usuario.herokuapp.com/api/tests/questions',{'email':email,'password':password,'match_id':match_id})
+def saveAnswerEndpoint(match_id,order,user_id,option):
+    data = POSTRequest('https://qg-usuario.herokuapp.com/api/tests/questions',{'user_id':user_id,'match_id':match_id})
     
     isValid = verifyOption(option)
 
@@ -33,19 +33,19 @@ def saveAnswerEndpoint(email,password,match_id,order,user_id,option):
 
     return {'status':'OK', 'response': None, 'message': 'Sucesso'}
 
-def endTestEndpoint(email,password,match_id,user_id,test_id,win):
+def endTestEndpoint(match_id,user_id,test_id,win):
     keyPath = MICROSERVICE + ":" + TEST + ":" + str(user_id) + ":" + match_id + "*"
     keyCorrect = keyPath + ":" + CORRECT
 
     correctList = redisKeysKey(keyCorrect)
     score = getScore(correctList)
-    response = saveUserTest(email,password,match_id,user_id,test_id,win,score)
+    response = saveUserTest(match_id,user_id,test_id,win,score)
 
 
     return response
 
-def saveUserTest(email,password,match_id,user_id,test_id,win,score):
-    data = POSTRequest('https://qg-usuario.herokuapp.com/api/tests/save',{'email':email,'password':password,'match_id':match_id,'win':win,'score':score,'test_id':test_id})
+def saveUserTest(match_id,user_id,test_id,win,score):
+    data = POSTRequest('https://qg-usuario.herokuapp.com/api/tests/save',{'user_id':user_id,'match_id':match_id,'win':win,'score':score,'test_id':test_id})
     return data
 
 def getScore(corrects):

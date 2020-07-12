@@ -13,48 +13,41 @@ def main():
 
 @app.route("/api/tests")
 def tests():
-    email = str(request.args.get('email'))
-    password = str(request.args.get('password'))
+    user_id = str(request.args.get('user_id'))
 
-    return jsonify(testsEndpoint(email,password))
+    return jsonify(testsEndpoint(user_id))
 
 @app.route("/api/done")
 def done():
-    email = str(request.args.get('email'))
-    password = str(request.args.get('password'))
+    user_id = str(request.args.get('user_id'))
 
-    return jsonify(testsDoneEndpoint(email,password))
+    return jsonify(testsDoneEndpoint(user_id))
 
 @app.route("/api/questions")
 def questions():
-    email = str(request.args.get('email'))
-    password = str(request.args.get('password'))
+    user_id = str(request.args.get('user_id'))
     match_id = str(request.args.get('match_id'))
     order = str(request.args.get('order'))
 
-    return jsonify(questionsEndpoint(email,password,match_id,order))
+    return jsonify(questionsEndpoint(user_id,match_id,order))
 
 @app.route("/api/save")
 def save():
-    email = str(request.args.get('email'))
-    password = str(request.args.get('password'))
     match_id = str(request.args.get('match_id'))
     order = str(request.args.get('order'))
     user_id = int(request.args.get('user_id'))
     option = str(request.args.get('option'))
 
-    return jsonify(saveAnswerEndpoint(email,password,match_id,order,user_id,option))
+    return jsonify(saveAnswerEndpoint(match_id,order,user_id,option))
 
 @app.route("/api/end")
 def end():
-    email = str(request.args.get('email'))
-    password = str(request.args.get('password'))
     match_id = str(request.args.get('match_id'))
     user_id = int(request.args.get('user_id'))
     test_id = int(request.args.get('test_id'))
     win = int(request.args.get('win'))
 
-    return jsonify(endTestEndpoint(email,password,match_id,user_id,test_id,win))
+    return jsonify(endTestEndpoint(match_id,user_id,test_id,win))
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=port)
