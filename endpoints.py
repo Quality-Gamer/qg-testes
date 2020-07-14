@@ -90,5 +90,5 @@ def saveAnswer(user_id,match_id,order,option,questions):
 
 
 def verifyOption(option):
-    return True if (option == 'A' or option == 'B' or option == 'C' or option == 'D') else False
+    return True if (option == 'A' or option == 'B' or option == 'C' or option == 'D' or option == 'X') else False
 
