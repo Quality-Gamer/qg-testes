@@ -62,7 +62,7 @@ def getScore(corrects):
     for key in corrects:
         correctsAnswers = correctsAnswers + int(redisGetKey(key))
 
-    return int(correctsAnswers/l)
+    return float(correctsAnswers/l)
 
 def selectQuestion(questions,order,hide = True):
     for question in questions:
