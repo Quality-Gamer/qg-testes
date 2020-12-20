@@ -26,10 +26,10 @@ def done():
 @app.route("/api/questions")
 def questions():
     user_id = str(request.args.get('user_id'))
-    match_id = str(request.args.get('match_id'))
+    test_id = str(request.args.get('test_id'))
     order = str(request.args.get('order'))
 
-    return jsonify(questionsEndpoint(user_id,match_id,order))
+    return jsonify(questionsEndpoint(user_id,test_id,order))
 
 @app.route("/api/save")
 def save():
